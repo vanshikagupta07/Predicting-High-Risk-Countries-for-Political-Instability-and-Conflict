@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fragile States Index Indicators</title>
+    <style>
+    .sec-title {
+	  position: relative;
+	  margin-bottom: 60px;
+	}
+
+	.sec-title .title {
+	  position: relative;
+	  display: block;
+	  font-size: 18px;
+	  line-height: 24px;
+	  color: #fdda33;
+	  font-weight: 500;
+	  margin-bottom: 30px;
+	}
+
+	.sec-title h2 {
+	  position: relative;
+	  display: inline-block;
+	  font-size: 60px;
+	  line-height: 1em;
+	  color: #212639;
+	  font-weight: 400;
+	  padding-bottom: 30px;
+	  z-index: 2;
+	}
+
+	.sec-title.active h2:before {
+	  -webkit-transform: scale(1);
+	  -moz-transform: scale(1);
+	  -ms-transform: scale(1);
+	  -o-transform: scale(1);
+	  transform: scale(1);
+	}
+
+	.sec-title h2:after {
+	  position: absolute;
+	  left: 0;
+	  bottom: 0px;
+	  height: 3px;
+	  width: 50px;
+	  content: "";
+	  background-color: #d1d2d6;
+	}
+
+	.sec-title.light h2 {
+	  color: #ffffff;
+	}
+
+	.sec-title.light h2:after {
+	  opacity: 0.2;
+	  background-color: #ffffff;
+	}
+
+	.sec-title.text-center h2:before,
+	.sec-title.text-center h2:after {
+	  right: 0;
+	  left: 0;
+	  margin: 0 auto;
+	}
+
+	.sec-title.text-center h2:before {
+	  opacity: 0.6;
+	}
+
+	.speakers-section {
+	  position: relative;
+	  background-repeat: no-repeat;
+	  background-position: center;
+	  background-size: cover;
+	  padding: 50px 0 90px;
+	  overflow: hidden;
+	}
+
+	.speaker-block {
+	  position: relative;
+	  margin-bottom: 40px;
+	}
+
+	.speaker-block .inner-box {
+	  position: relative;
+	}
+
+	.speaker-block .image-box {
+	  position: relative;
+	  padding: 20px;
+	  background-color: rgba(255, 255, 255, 0.15);
+	  overflow: hidden;
+	  border-radius: 10px;
+	}
+
+	.speaker-block .image-box .image:after,
+	.speaker-block .image-box:before {
+	  position: absolute;
+	  left: 0;
+	  top: 0;
+	  height: 0;
+	  width: 100%;
+	  background-color: #ffffff;
+	  content: "";
+	  -webkit-transition: all 700ms ease;
+	  -moz-transition: all 700ms ease;
+	  -ms-transition: all 700ms ease;
+	  -o-transition: all 700ms ease;
+	  transition: all 700ms ease;
+	}
+
+	.speaker-block .inner-box:hover .image-box .image:after,
+	.speaker-block .inner-box:hover .image-box:before {
+	  height: 100%;
+	}
+
+	.speaker-block .image-box .image:after {
+	  opacity: 0.4;
+	  z-index: 1;
+	  top: auto;
+	  bottom: 0;
+	  background-color: #ffffff00;
+	}
+
+	.speaker-block .image-box .image {
+	  position: relative;
+	  margin-bottom: 0;
+	  z-index: 1;
+	  overflow: hidden;
+	}
+
+	.speaker-block .image-box .image img {
+	  display: block;
+	  width: 100%;
+	  height: auto;
+	}
+
+	.speaker-block .social-links {
+	  position: absolute;
+	  left: 0;
+	  bottom: -350px;
+	  padding: 20px;
+	  width: 100%;
+	  z-index: 9;
+	  -webkit-transition: all 700ms ease;
+	  -moz-transition: all 700ms ease;
+	  -ms-transition: all 700ms ease;
+	  -o-transition: all 700ms ease;
+	  transition: all 700ms ease;
+	}
+
+	.speaker-block .social-links ul {
+	  position: relative;
+	  padding: 30px 20px;
+	  text-align: center;
+	  border-radius: 5px;
+	  background-color: #0b0b2cce;
+	}
+
+	.speaker-block .social-links li {
+	  position: relative;
+	  display: inline-block;
+	  margin: 0 9px;
+	}
+
+	.speaker-block .social-links li a {
+	  position: relative;
+	  display: block;
+	  font-size: 18px;
+	  line-height: 30px;
+	  font-weight: 400;
+	  color: #ffffff;
+	  -webkit-transition: all 300ms ease;
+	  -moz-transition: all 300ms ease;
+	  -ms-transition: all 300ms ease;
+	  -o-transition: all 300ms ease;
+	  transition: all 300ms ease;
+	}
+
+	.speaker-block .social-links li a:hover {
+	  color: #fac201;
+	}
+
+	.speaker-block .inner-box:hover .social-links {
+	  bottom: 0;
+	}
+
+	.speaker-block .caption-box {
+	  position: relative;
+	  padding-top: 30px;
+	}
+
+	.speaker-block .caption-box .name {
+	  position: relative;
+	  display: block;
+	  font-size: 30px;
+	  line-height: 1em;
+	  color: #ffffff;
+	  font-weight: 400;
+	  margin-bottom: 10px;
+	}
+
+	.speaker-block .caption-box .name a {
+	  color: #ffffff;
+	  display: inline-block;
+	  -webkit-transition: all 300ms ease;
+	  -moz-transition: all 300ms ease;
+	  -ms-transition: all 300ms ease;
+	  -o-transition: all 300ms ease;
+	  transition: all 300ms ease;
+	}
+
+	/* .speaker-block .caption-box .name a:hover {
+	  color: #fdda33;
+	} */
+
+	.speaker-block .caption-box .designation {
+	  position: relative;
+	  display: block;
+	  font-size: 17px;
+	  line-height: 26px;
+	  color: #ffffff;
+	  font-weight: 400;
+	  opacity: 0.7;
+	}
+	ul {
+	  margin: 0;
+	  padding: 0;
+	  list-style: none;
+	}
+	img {
+	  max-width: 100%;
+	  height: auto;
+	}
+</style>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://daneden.github.io/animate.css/animate.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- partial:index.partial.html -->
+    <section
+      class="speakers-section"
+      style="
+        background: #000046;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #1CB5E0, #000046);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #1CB5E0, #000046); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+      "
+    >
+
+      <div class="container">
+        <div class="sec-title light text-center">
+          <span class="title" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; color: white;"><h1><strong><u>Fragile States Index Indicators</u></strong></h1></span>
+        </div>
+        <div class="row">
+          <div class="speaker-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
+            <div class="inner-box">
+              <div class="image-box">
+                <figure class="image">
+          		<img src="https://fragilestatesindex.org/wp-content/uploads/2017/04/indicator-c1-sec-w-233x300.png" width="350" height="350">
+                  <div class="social-links">
+                    <ul>
+            		<p style="font-size: 20px; color: white;"><strong>
+						C1: Security Apparatus
+					</strong>
+					  </p>
+					  <div style="background-color:aliceblue; font-size: 17px ;border-radius: 5px; height: 200px;
+					  overflow: scroll">
+						<p style="padding: 10px;">
+							The Security Apparatus indicator considers the security threats to a state, such as bombings, attacks and battle-related deaths, rebel movements, mutinies, coups, or terrorism.
+							</p>
+					  </div>
+                    </ul>
+                  </div>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+		  <div class="speaker-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
+            <div class="inner-box">
+              <div class="image-box">
+                <figure class="image">
+          		<img src="https://fragilestatesindex.org/wp-content/uploads/2017/04/indicator-c2-fe-w-233x300.png" width="350" height="350">
+                  <div class="social-links">
+                    <ul>
+            		<p style="font-size: 20px; color: white;"><strong>
+						C2: Factionalized Elites
+					</strong>
+					  </p>
+					  <div style="background-color:aliceblue; font-size: 17px ;border-radius: 5px; height: 200px;
+					  overflow: scroll">
+						<p style="padding: 10px;">
+							The Factionalized Elites indicator considers the fragmentation of state institutions along ethnic, class, clan, racial or religious lines, as well as and brinksmanship and gridlock between ruling elites.
+						</p>
+					  </div>
+                    </ul>
+                  </div>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+		  <div class="speaker-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
+            <div class="inner-box">
+              <div class="image-box">
+                <figure class="image">
+          		<img src="https://fragilestatesindex.org/wp-content/uploads/2017/05/indicator-c3-gg-w-233x300.png" width="350" height="350">
+                  <div class="social-links">
+                    <ul>
+            		<p style="font-size: 20px; color: white;"><strong>
+						C3: Group Grievance
+					</strong>
+					  </p>
+					  <div style="background-color:aliceblue; font-size: 17px ;border-radius: 5px; height: 200px;
+					  overflow: scroll">
+						<p style="padding: 10px;">
+							The Group Grievance Indicator focuses on divisions and schisms between different groups in society particularly divisions based on social or political characteristics and their role in access to services or resources, and inclusion in the political process.
+						</p>
+					  </div>
+                    </ul>
+                  </div>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+		  <div class="speaker-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
+            <div class="inner-box">
+              <div class="image-box">
+                <figure class="image">
+          		<img src="https://fragilestatesindex.org/wp-content/uploads/2017/04/indicator-e1-eco-w-233x300.png" width="350" height="350">
+                  <div class="social-links">
+                    <ul>
+            		<p style="font-size: 20px; color: white;"><strong>
+						E1: Economic Decline and Poverty
+					</strong>
+					  </p>
+					  <div style="background-color:aliceblue; font-size: 17px ;border-radius: 5px; height: 200px;
+					  overflow: scroll">
+						<p style="padding: 10px;">
+							The Economic Decline Indicator considers factors related to economic decline within a country. For example, the Indicator looks at patterns of progressive economic decline of the society as a whole as measured by per capita income, Gross National Product, unemployment rates, inflation, productivity, debt, poverty levels, or business failures.
+						</p>
+					  </div>
+                    </ul>
+                  </div>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+		  <div class="speaker-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
+            <div class="inner-box">
+              <div class="image-box">
+                <figure class="image">
+          		<img src="https://fragilestatesindex.org/wp-content/uploads/2017/04/indicator-e2-ued-w-233x300.png" width="350" height="350">
+                  <div class="social-links">
+                    <ul>
+            		<p style="font-size: 20px; color: white;"><strong>
+						E2: Uneven Economic Development
+					</strong>
+					  </p>
+					  <div style="background-color:aliceblue; font-size: 17px ;border-radius: 5px; height: 200px;
+					  overflow: scroll">
+						<p style="padding: 10px;">
+							The Uneven Economic Development Indicator considers inequality within the economy, irrespective of the actual performance of an economy. For example, the Indicator looks at structural inequality that is based on group (such as racial, ethnic, religious, or other identity group) or based on education, economic status, or region (such as urban-rural divide).
+						</p>
+					  </div>
+                    </ul>
+                  </div>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+
+<div class="speaker-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
+            <div class="inner-box">
+              <div class="image-box">
+                <figure class="image">
+          		<img src="https://fragilestatesindex.org/wp-content/uploads/2017/04/indicator-e3-hf-w-233x300.png" width="350" height="350">
+                  <div class="social-links">
+                    <ul>
+            		<p style="font-size: 20px; color: white;"><strong>
+						E3: Human Flight and Brain Drain
+					</strong>
+					  </p>
+					  <div style="background-color:aliceblue; font-size: 17px ;border-radius: 5px; height: 200px;
+					  overflow: scroll">
+						<p style="padding: 10px;">
+							The Human Flight and Brain Drain Indicator considers the economic impact of human displacement (for economic or political reasons) and the consequences this may have on a country's development.
+						</p>
+					  </div>
+                    </ul>
+                  </div>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+<div class="speaker-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
+            <div class="inner-box">
+              <div class="image-box">
+                <figure class="image">
+          		<img src="https://fragilestatesindex.org/wp-content/uploads/2017/04/indicator-p1-sl-w-233x300.png" width="350" height="350">
+                  <div class="social-links">
+                    <ul>
+            		<p style="font-size: 20px; color: white;"><strong>
+						P1: State Legitimacy
+					</strong>
+					  </p>
+					  <div style="background-color:aliceblue; font-size: 17px ;border-radius: 5px; height: 200px;
+					  overflow: scroll">
+						<p style="padding: 10px;">
+							The State Legitimacy Indicator considers the representativeness and openness of government and its relationship with its citizenry. The Indicator looks at the population's level of confidence in state institutions and processes, and assesses the effects where that confidence is absent, manifested through mass public demonstrations, sustained civil disobedience, or the rise of armed insurgencies.
+						</p>
+					  </div>
+                    </ul>
+                  </div>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+<div class="speaker-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
+            <div class="inner-box">
+              <div class="image-box">
+                <figure class="image">
+          		<img src="https://fragilestatesindex.org/wp-content/uploads/2017/04/indicator-p2-ps-w-233x300.png" width="350" height="350">
+                  <div class="social-links">
+                    <ul>
+            		<p style="font-size: 20px; color: white;"><strong>
+						P2: Public Services
+					</strong>
+					  </p>
+					  <div style="background-color:aliceblue; font-size: 17px ;border-radius: 5px; height: 200px;
+					  overflow: scroll">
+						<p style="padding: 10px;">
+							The Public Services Indicator refers to the presence of basic state functions that serve the people. On the one hand, this may include the provision of essential services, such as health, education, water and sanitation, transport infrastructure, electricity and power, and internet and connectivity. On the other hand, it may include the state's ability to protect its citizens, such as from terrorism and violence, through perceived effective policing.
+						</p>
+					  </div>
+                    </ul>
+                  </div>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+<div class="speaker-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
+            <div class="inner-box">
+              <div class="image-box">
+                <figure class="image">
+          		<img src="https://fragilestatesindex.org/wp-content/uploads/2017/04/indicator-p3-hr-w-233x300.png" width="350" height="350">
+                  <div class="social-links">
+                    <ul>
+            		<p style="font-size: 20px; color: white;"><strong>
+						P3: Human Rights and Rule of Law
+					</strong>
+					  </p>
+					  <div style="background-color:aliceblue; font-size: 17px ;border-radius: 5px; height: 200px;
+					  overflow: scroll">
+						<p style="padding: 10px;">
+							The Human Rights and Rule of Law Indicator considers the relationship between the state and its population insofar as fundamental human rights are protected and freedoms are observed and respected.
+						</p>
+					  </div>
+                    </ul>
+                  </div>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+<div class="speaker-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
+            <div class="inner-box">
+              <div class="image-box">
+                <figure class="image">
+          		<img src="https://fragilestatesindex.org/wp-content/uploads/2017/04/indicator-s1-dp-w-233x300.png" width="350" height="350">
+                  <div class="social-links">
+                    <ul>
+            		<p style="font-size: 20px; color: white;"><strong>
+						S1: Demographic Pressures
+					</strong>
+					  </p>
+					  <div style="background-color:aliceblue; font-size: 17px ;border-radius: 5px; height: 200px;
+					  overflow: scroll">
+						<p style="padding: 10px;">
+							The Demographic Pressures Indicator considers pressures upon the state deriving from the population itself or the environment around it.
+						</p>
+					  </div>
+                    </ul>
+                  </div>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+<div class="speaker-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
+            <div class="inner-box">
+              <div class="image-box">
+                <figure class="image">
+          		<img src="https://fragilestatesindex.org/wp-content/uploads/2017/04/indicator-s2-ref-w-233x300.png" width="350" height="350">
+                  <div class="social-links">
+                    <ul>
+            		<p style="font-size: 20px; color: white;"><strong>
+						S2: Refugees and IDPs
+					</strong>
+					  </p>
+					  <div style="background-color:aliceblue; font-size: 17px ;border-radius: 5px; height: 200px;
+					  overflow: scroll">
+						<p style="padding: 10px;">
+							The Refugees and Internally Displaced Persons Indicator measures the pressure upon states caused by the forced displacement of large communities as a result of social, political, environmental or other causes, measuring displacement within countries, as well as refugee flows into others.
+						</p>
+					  </div>
+                    </ul>
+                  </div>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+<div class="speaker-block col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
+            <div class="inner-box">
+              <div class="image-box">
+                <figure class="image">
+          		<img src="https://fragilestatesindex.org/wp-content/uploads/2017/05/indicator-x1-ext-w-233x300.png" width="350" height="350">
+                  <div class="social-links">
+                    <ul>
+            		<p style="font-size: 20px; color: white;"><strong>
+						X1: External Intervention
+					</strong>
+					  </p>
+					  <div style="background-color:aliceblue; font-size: 17px ;border-radius: 5px; height: 200px;
+					  overflow: scroll">
+						<p style="padding: 10px;">
+							The External Intervention Indicator considers the influence and impact of external actors in the functioning particularly security and economic of a state.
+						</p>
+					  </div>
+                    </ul>
+                  </div>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- partial -->
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  </body>
+</html>
